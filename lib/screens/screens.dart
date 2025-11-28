@@ -1,0 +1,14 @@
+export 'cambio_email_page.dart';
+export 'carrito_compra_page.dart';
+export 'categorias_page.dart';
+export 'confirmacion_page.dart';
+export 'detalle_pago_page.dart';
+export 'detalle_producto_page.dart';
+export 'genero_page.dart';
+export 'lista_productos_page.dart';
+export 'login_page.dart';
+export 'medio_pago_page.dart';
+export 'nuevo_password_page.dart';
+export 'orden_compra_page.dart';
+export 'perfil_usuario_page.dart';
+export 'registro_usuario_page.dart';
