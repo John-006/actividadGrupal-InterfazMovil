@@ -6,12 +6,42 @@ class ListaProductosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final libros = [
-      {'titulo': 'Cien años de soledad', 'autor': 'Gabriel García Márquez', 'precio': '\$45.000'},
-      {'titulo': 'Don Quijote de la Mancha', 'autor': 'Miguel de Cervantes', 'precio': '\$38.000'},
-      {'titulo': '1984', 'autor': 'George Orwell', 'precio': '\$32.000'},
-      {'titulo': 'El principito', 'autor': 'Antoine de Saint-Exupéry', 'precio': '\$25.000'},
-      {'titulo': 'Orgullo y prejuicio', 'autor': 'Jane Austen', 'precio': '\$35.000'},
-      {'titulo': 'Crónica de una muerte anunciada', 'autor': 'Gabriel García Márquez', 'precio': '\$30.000'},
+      {
+        'titulo': 'Cien años de soledad',
+        'autor': 'Gabriel García Márquez',
+        'precio': '\$45.000',
+        'imagen': 'https://www.rae.es/sites/default/files/styles/obra_portada_ficha/public/portada_cien_anos_de_soledad_0.jpg?itok=DDV1xNqg'
+      },
+      {
+        'titulo': 'Don Quijote de la Mancha',
+        'autor': 'Miguel de Cervantes',
+        'precio': '\$38.000',
+        'imagen': 'https://www.elejandria.com/covers/Don_Quijote_de_la_Mancha-Cervantes_Miguel-md.png'
+      },
+      {
+        'titulo': '1984',
+        'autor': 'George Orwell',
+        'precio': '\$32.000',
+        'imagen': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ84nUqbpAYPEo7Dw9iCDYBwOlUX5bn6dr6ig&s'
+      },
+      {
+        'titulo': 'El principito',
+        'autor': 'Antoine de Saint-Exupéry',
+        'precio': '\$25.000',
+        'imagen': 'https://www.tornamesa.co/imagenes/9789584/978958420138.GIF'
+      },
+      {
+        'titulo': 'Orgullo y prejuicio',
+        'autor': 'Jane Austen',
+        'precio': '\$35.000',
+        'imagen': 'https://img.perlego.com/book-covers/4294081/9788467071139_300_450.webp'
+      },
+      {
+        'titulo': 'Crónica de una muerte anunciada',
+        'autor': 'Gabriel García Márquez',
+        'precio': '\$30.000',
+        'imagen': 'https://covers.odilo.io/public/OdiloPlace_PRH_SPA_LICENCIAS/9788439729952_ORIGINAL.jpg'
+      },
     ];
 
     return Scaffold(
@@ -117,17 +147,48 @@ class ListaProductosPage extends StatelessWidget {
                       child: Row(
                         children: [
                           // Imagen del libro
-                          Container(
-                            width: 80,
-                            height: 120,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Icon(
-                              Icons.book,
-                              size: 40,
-                              color: Colors.grey.shade500,
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              libro['imagen'] as String,
+                              width: 80,
+                              height: 120,
+                              fit: BoxFit.cover,
+                              loadingBuilder: (context, child, loadingProgress) {
+                                if (loadingProgress == null) return child;
+                                return Container(
+                                  width: 80,
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade300,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      value: loadingProgress.expectedTotalBytes != null
+                                          ? loadingProgress.cumulativeBytesLoaded /
+                                              loadingProgress.expectedTotalBytes!
+                                          : null,
+                                      color: const Color(0xFF6A4C93),
+                                    ),
+                                  ),
+                                );
+                              },
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  width: 80,
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey.shade300,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Icon(
+                                    Icons.book,
+                                    size: 40,
+                                    color: Colors.grey.shade500,
+                                  ),
+                                );
+                              },
                             ),
                           ),
                           const SizedBox(width: 16),
