@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 24),
               // Título
               const Text(
-                'Bienvenido',
+                'Bienvenido a la biblioteca',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
