@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class OrdenCompraPage extends StatelessWidget {
   const OrdenCompraPage({super.key});
@@ -6,9 +7,9 @@ class OrdenCompraPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Resumen del Pedido',
@@ -32,23 +33,16 @@ class OrdenCompraPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Información de entrega
-                  const Text(
-                    'Información de Entrega',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
-                  ),
+                  Text('Información de Entrega', style: AppTextStyles.subtitle),
                   const SizedBox(height: 12),
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.white,
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
+                          color: Colors.black.withOpacity(0.04),
                           blurRadius: 5,
                           offset: const Offset(0, 2),
                         ),
@@ -65,7 +59,7 @@ class OrdenCompraPage extends StatelessWidget {
                                 color: const Color(0xFF6A4C93).withOpacity(0.1),
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              child: const Icon(
+                                child: const Icon(
                                 Icons.person,
                                 color: Color(0xFF6A4C93),
                               ),
@@ -144,14 +138,7 @@ class OrdenCompraPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   // Productos
-                  const Text(
-                    'Productos',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
-                  ),
+                  Text('Productos', style: AppTextStyles.subtitle),
                   const SizedBox(height: 12),
                   _buildProductItem('Cien años de soledad', 'Gabriel García Márquez', 45000, 1),
                   const SizedBox(height: 8),
@@ -160,23 +147,16 @@ class OrdenCompraPage extends StatelessWidget {
                   _buildProductItem('El principito', 'Antoine de Saint-Exupéry', 25000, 1),
                   const SizedBox(height: 24),
                   // Método de pago
-                  const Text(
-                    'Método de Pago',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
-                  ),
+                  Text('Método de Pago', style: AppTextStyles.subtitle),
                   const SizedBox(height: 12),
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.white,
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
+                          color: Colors.black.withOpacity(0.04),
                           blurRadius: 5,
                           offset: const Offset(0, 2),
                         ),
@@ -217,14 +197,14 @@ class OrdenCompraPage extends StatelessWidget {
               ),
             ),
           ),
-          // Resumen y botón
+                // Resumen y botón
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withOpacity(0.06),
                   blurRadius: 10,
                   offset: const Offset(0, -5),
                 ),
@@ -240,27 +220,7 @@ class OrdenCompraPage extends StatelessWidget {
                 const Divider(height: 24),
                 _buildSummaryRow('Total', '\$179.690', isTotal: true),
                 const SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF6A4C93),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: const Text(
-                      'Confirmar Pedido',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+                AppButton(text: 'Confirmar Pedido', onPressed: () {}),
               ],
             ),
           ),

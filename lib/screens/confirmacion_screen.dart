@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class ConfirmacionPage extends StatelessWidget {
   const ConfirmacionPage({super.key});
@@ -6,7 +7,7 @@ class ConfirmacionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -25,7 +26,7 @@ class ConfirmacionPage extends StatelessWidget {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF4CAF50).withOpacity(0.3),
+                            color: const Color(0xFF4CAF50).withOpacity(0.28),
                             blurRadius: 20,
                             offset: const Offset(0, 10),
                           ),
@@ -38,22 +39,15 @@ class ConfirmacionPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 32),
-                    const Text(
+                    Text(
                       '¡Pedido Confirmado!',
-                      style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF333333),
-                      ),
+                      style: AppTextStyles.title.copyWith(fontSize: 28),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
-                    const Text(
+                    Text(
                       'Tu pedido ha sido procesado exitosamente',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Color(0xFF666666),
-                      ),
+                      style: AppTextStyles.bodyLight,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 40),
@@ -61,11 +55,11 @@ class ConfirmacionPage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.white,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
+                            color: Colors.black.withOpacity(0.04),
                             blurRadius: 10,
                             offset: const Offset(0, 5),
                           ),
@@ -85,11 +79,7 @@ class ConfirmacionPage extends StatelessWidget {
                               ),
                               Text(
                                 '#ORD-2024-001234',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF6A4C93),
-                                ),
+                                style: AppTextStyles.body.copyWith(fontWeight: FontWeight.bold, color: AppColors.primary),
                               ),
                             ],
                           ),
@@ -127,11 +117,7 @@ class ConfirmacionPage extends StatelessWidget {
                               ),
                               Text(
                                 '\$179.690',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xFF6A4C93),
-                                ),
+                                style: AppTextStyles.subtitle.copyWith(color: AppColors.primary, fontSize: 18),
                               ),
                             ],
                           ),
@@ -164,24 +150,21 @@ class ConfirmacionPage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF6A4C93).withOpacity(0.1),
+                        color: AppColors.primary.withOpacity(0.08),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(
-                        children: const [
+                        children: [
                           Icon(
                             Icons.info_outline,
-                            color: Color(0xFF6A4C93),
+                            color: AppColors.primary,
                             size: 24,
                           ),
-                          SizedBox(width: 12),
+                          const SizedBox(width: 12),
                           Expanded(
                             child: Text(
                               'Hemos enviado un correo de confirmación con los detalles de tu pedido',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Color(0xFF6A4C93),
-                              ),
+                              style: AppTextStyles.body.copyWith(color: AppColors.primary),
                             ),
                           ),
                         ],
@@ -193,51 +176,9 @@ class ConfirmacionPage extends StatelessWidget {
               // Botones
               Column(
                 children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF6A4C93),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: const Text(
-                        'Seguir Pedido',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
+                  AppButton(text: 'Seguir Pedido', onPressed: () {}),
                   const SizedBox(height: 12),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: OutlinedButton(
-                      onPressed: () {
-                        Navigator.of(context).popUntil((route) => route.isFirst);
-                      },
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: const Color(0xFF6A4C93),
-                        side: const BorderSide(color: Color(0xFF6A4C93), width: 2),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: const Text(
-                        'Volver al Inicio',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
+                  AppButton(text: 'Volver al Inicio', onPressed: () { Navigator.of(context).popUntil((route) => route.isFirst); }, isOutline: true),
                 ],
               ),
             ],

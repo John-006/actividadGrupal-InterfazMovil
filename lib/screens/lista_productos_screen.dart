@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class ListaProductosPage extends StatelessWidget {
   const ListaProductosPage({super.key});
@@ -45,9 +46,9 @@ class ListaProductosPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Libros disponibles',
@@ -73,7 +74,7 @@ class ListaProductosPage extends StatelessWidget {
           // Barra de búsqueda y filtros
           Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.white,
+            color: AppColors.white,
             child: Column(
               children: [
                 TextField(
@@ -81,7 +82,7 @@ class ListaProductosPage extends StatelessWidget {
                     hintText: 'Buscar libros...',
                     prefixIcon: const Icon(Icons.search, color: Color(0xFF6A4C93)),
                     filled: true,
-                    fillColor: const Color(0xFFF5F5F5),
+                    fillColor: AppColors.background,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none,
@@ -93,14 +94,14 @@ class ListaProductosPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: OutlinedButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(Icons.filter_list, size: 18),
-                        label: const Text('Filtrar'),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: const Color(0xFF6A4C93),
-                          side: const BorderSide(color: Color(0xFF6A4C93)),
+                          onPressed: () {},
+                          icon: const Icon(Icons.filter_list, size: 18),
+                          label: const Text('Filtrar'),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: AppColors.primary,
+                            side: BorderSide(color: AppColors.primary),
+                          ),
                         ),
-                      ),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -109,8 +110,8 @@ class ListaProductosPage extends StatelessWidget {
                         icon: const Icon(Icons.sort, size: 18),
                         label: const Text('Ordenar'),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: const Color(0xFF6A4C93),
-                          side: const BorderSide(color: Color(0xFF6A4C93)),
+                          foregroundColor: AppColors.primary,
+                          side: BorderSide(color: AppColors.primary),
                         ),
                       ),
                     ),
@@ -129,11 +130,11 @@ class ListaProductosPage extends StatelessWidget {
                 return Container(
                   margin: const EdgeInsets.only(bottom: 16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.white,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
+                        color: Colors.black.withOpacity(0.06),
                         blurRadius: 5,
                         offset: const Offset(0, 2),
                       ),
@@ -160,7 +161,7 @@ class ListaProductosPage extends StatelessWidget {
                                   width: 80,
                                   height: 120,
                                   decoration: BoxDecoration(
-                                    color: Colors.grey.shade300,
+                                    color: AppColors.grey300,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Center(
@@ -169,7 +170,7 @@ class ListaProductosPage extends StatelessWidget {
                                           ? loadingProgress.cumulativeBytesLoaded /
                                               loadingProgress.expectedTotalBytes!
                                           : null,
-                                      color: const Color(0xFF6A4C93),
+                                      color: AppColors.primary,
                                     ),
                                   ),
                                 );
@@ -179,13 +180,13 @@ class ListaProductosPage extends StatelessWidget {
                                   width: 80,
                                   height: 120,
                                   decoration: BoxDecoration(
-                                    color: Colors.grey.shade300,
+                                    color: AppColors.grey300,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Icon(
                                     Icons.book,
                                     size: 40,
-                                    color: Colors.grey.shade500,
+                                    color: AppColors.grey500,
                                   ),
                                 );
                               },
@@ -221,21 +222,17 @@ class ListaProductosPage extends StatelessWidget {
                                   children: [
                                     Text(
                                       libro['precio'] as String,
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF6A4C93),
-                                      ),
+                                      style: AppTextStyles.subtitle.copyWith(color: AppColors.primary, fontSize: 18),
                                     ),
                                     IconButton(
                                       onPressed: () {},
                                       icon: const Icon(
                                         Icons.add_shopping_cart,
-                                        color: Color(0xFF6A4C93),
+                                              color: Color(0xFF6A4C93),
                                       ),
-                                      style: IconButton.styleFrom(
-                                        backgroundColor: const Color(0xFF6A4C93).withOpacity(0.1),
-                                      ),
+                                            style: IconButton.styleFrom(
+                                              backgroundColor: AppColors.primary.withOpacity(0.1),
+                                            ),
                                     ),
                                   ],
                                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -6,7 +7,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -19,8 +20,11 @@ class LoginPage extends StatelessWidget {
                 height: 120,
                 width: 120,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF6A4C93),
+                  color: AppColors.primary,
                   borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 12, offset: const Offset(0, 6)),
+                  ],
                 ),
                 child: const Icon(
                   Icons.local_library,
@@ -30,22 +34,15 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               // Título
-              const Text(
+              Text(
                 'Bienvenido a la biblioteca',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF333333),
-                ),
+                style: AppTextStyles.title.copyWith(fontSize: 28),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
-              const Text(
+              Text(
                 'Inicia sesión en tu biblioteca',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF666666),
-                ),
+                style: AppTextStyles.bodyLight,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
@@ -63,7 +60,7 @@ class LoginPage extends StatelessWidget {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'ejemplo@correo.com',
-                  prefixIcon: const Icon(Icons.email, color: Color(0xFF6A4C93)),
+                  prefixIcon: Icon(Icons.email, color: AppColors.primary),
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
@@ -87,7 +84,7 @@ class LoginPage extends StatelessWidget {
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: '••••••••',
-                  prefixIcon: const Icon(Icons.lock, color: Color(0xFF6A4C93)),
+                  prefixIcon: Icon(Icons.lock, color: AppColors.primary),
                   filled: true,
                   fillColor: Colors.white,
                   border: OutlineInputBorder(
@@ -102,36 +99,17 @@ class LoginPage extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {},
-                  child: const Text(
-                    '¿Olvidaste tu contraseña?',
-                    style: TextStyle(
-                      color: Color(0xFF6A4C93),
-                      fontSize: 14,
+                  child: Text(
+                      '¿Olvidaste tu contraseña?',
+                      style: AppTextStyles.body.copyWith(color: AppColors.primary),
                     ),
-                  ),
                 ),
               ),
               const SizedBox(height: 24),
               // Botón de iniciar sesión
-              SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF6A4C93),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text(
-                    'Iniciar Sesión',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+              AppButton(
+                text: 'Iniciar Sesión',
+                onPressed: () {},
               ),
               const SizedBox(height: 24),
               // Registro
@@ -151,13 +129,9 @@ class LoginPage extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       minimumSize: const Size(0, 0),
                     ),
-                    child: const Text(
+                      child: Text(
                       'Regístrate',
-                      style: TextStyle(
-                        color: Color(0xFF6A4C93),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: AppTextStyles.button.copyWith(color: AppColors.primary, fontSize: 14),
                     ),
                   ),
                 ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class RegistroUsuarioPage extends StatelessWidget {
   const RegistroUsuarioPage({super.key});
@@ -6,12 +7,12 @@ class RegistroUsuarioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF333333)),
+          icon: const Icon(Icons.arrow_back, color: AppColors.text),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -21,190 +22,67 @@ class RegistroUsuarioPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Título
-              const Text(
-                'Crear Cuenta',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF333333),
-                ),
-              ),
+              Text('Crear Cuenta', style: AppTextStyles.title),
               const SizedBox(height: 8),
-              const Text(
-                'Completa los datos para registrarte',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF666666),
-                ),
-              ),
+              Text('Completa los datos para registrarte', style: AppTextStyles.bodyLight),
               const SizedBox(height: 32),
-              // Nombre completo
-              const Text(
-                'Nombre completo',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF333333),
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Juan Pérez',
-                  prefixIcon: const Icon(Icons.person, color: Color(0xFF6A4C93)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+
+              AppTextField(
+                label: 'Nombre completo',
+                hint: 'Juan Pérez',
+                prefixIcon: Icons.person,
               ),
               const SizedBox(height: 20),
-              // Correo electrónico
-              const Text(
-                'Correo electrónico',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF333333),
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
+
+              AppTextField(
+                label: 'Correo electrónico',
+                hint: 'ejemplo@correo.com',
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  hintText: 'ejemplo@correo.com',
-                  prefixIcon: const Icon(Icons.email, color: Color(0xFF6A4C93)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                prefixIcon: Icons.email,
               ),
               const SizedBox(height: 20),
-              // Teléfono
-              const Text(
-                'Teléfono',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF333333),
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
+
+              AppTextField(
+                label: 'Teléfono',
+                hint: '+57 300 123 4567',
                 keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  hintText: '+57 300 123 4567',
-                  prefixIcon: const Icon(Icons.phone, color: Color(0xFF6A4C93)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                prefixIcon: Icons.phone,
               ),
               const SizedBox(height: 20),
-              // Contraseña
-              const Text(
-                'Contraseña',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF333333),
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
+
+              AppTextField(
+                label: 'Contraseña',
+                hint: '••••••••',
                 obscureText: true,
-                decoration: InputDecoration(
-                  hintText: '••••••••',
-                  prefixIcon: const Icon(Icons.lock, color: Color(0xFF6A4C93)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                prefixIcon: Icons.lock,
               ),
               const SizedBox(height: 20),
-              // Confirmar contraseña
-              const Text(
-                'Confirmar contraseña',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF333333),
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextField(
+
+              AppTextField(
+                label: 'Confirmar contraseña',
+                hint: '••••••••',
                 obscureText: true,
-                decoration: InputDecoration(
-                  hintText: '••••••••',
-                  prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF6A4C93)),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
+                prefixIcon: Icons.lock_outline,
               ),
               const SizedBox(height: 32),
-              // Botón de registro
-              SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF6A4C93),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text(
-                    'Registrarse',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+
+              AppButton(
+                text: 'Registrarse',
+                onPressed: () {},
               ),
               const SizedBox(height: 24),
-              // Ya tienes cuenta
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text(
-                    '¿Ya tienes cuenta? ',
-                    style: TextStyle(
-                      color: Color(0xFF666666),
-                      fontSize: 14,
-                    ),
-                  ),
+                  Text('¿Ya tienes cuenta? ', style: AppTextStyles.bodyLight),
                   TextButton(
                     onPressed: () => Navigator.pop(context),
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       minimumSize: const Size(0, 0),
                     ),
-                    child: const Text(
-                      'Inicia Sesión',
-                      style: TextStyle(
-                        color: Color(0xFF6A4C93),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    child: Text('Inicia Sesión', style: AppTextStyles.subtitle.copyWith(color: AppColors.primary)),
                   ),
                 ],
               ),

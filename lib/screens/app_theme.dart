@@ -9,6 +9,12 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color text = Color(0xFF333333);
   static const Color textLight = Color(0xFF666666);
+  // Grises y rojos usados en pantallas
+  static final Color grey300 = Colors.grey.shade300;
+  static final Color grey400 = Colors.grey.shade400;
+  static final Color grey500 = Colors.grey.shade500;
+  static final Color grey600 = Colors.grey.shade600;
+  static final Color red400 = Colors.red.shade400;
 }
 
 // Estilos de texto

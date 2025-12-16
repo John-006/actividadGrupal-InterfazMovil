@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class CategoriasPage extends StatelessWidget {
   const CategoriasPage({super.key});
@@ -17,9 +18,9 @@ class CategoriasPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Categorías',
@@ -39,13 +40,13 @@ class CategoriasPage extends StatelessWidget {
           // Barra de búsqueda
           Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.white,
+            color: AppColors.white,
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Buscar categoría...',
                 prefixIcon: const Icon(Icons.search, color: Color(0xFF6A4C93)),
                 filled: true,
-                fillColor: const Color(0xFFF5F5F5),
+                fillColor: AppColors.background,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
@@ -68,13 +69,13 @@ class CategoriasPage extends StatelessWidget {
                 final categoria = categorias[index];
                 return GestureDetector(
                   onTap: () {},
-                  child: Container(
+                    child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.white,
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
+                          color: Colors.black.withOpacity(0.06),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -87,7 +88,7 @@ class CategoriasPage extends StatelessWidget {
                           height: 80,
                           width: 80,
                           decoration: BoxDecoration(
-                            color: (categoria['color'] as Color).withOpacity(0.1),
+                            color: (categoria['color'] as Color).withOpacity(0.12),
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Icon(
@@ -99,11 +100,7 @@ class CategoriasPage extends StatelessWidget {
                         const SizedBox(height: 12),
                         Text(
                           categoria['nombre'] as String,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF333333),
-                          ),
+                          style: AppTextStyles.subtitle,
                         ),
                       ],
                     ),

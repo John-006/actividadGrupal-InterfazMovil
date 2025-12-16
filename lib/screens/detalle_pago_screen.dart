@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class DetallePagoPage extends StatelessWidget {
   const DetallePagoPage({super.key});
@@ -6,9 +7,9 @@ class DetallePagoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Detalle de Pago',
@@ -32,15 +33,15 @@ class DetallePagoPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF6A4C93), Color(0xFF8B5FBF)],
+                gradient: LinearGradient(
+                  colors: [AppColors.primary, AppColors.secondary],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFF6A4C93).withOpacity(0.3),
+                    color: AppColors.primary.withOpacity(0.22),
                     blurRadius: 10,
                     offset: const Offset(0, 5),
                   ),
@@ -54,31 +55,20 @@ class DetallePagoPage extends StatelessWidget {
                     color: Colors.white,
                   ),
                   const SizedBox(height: 12),
-                  const Text(
+                  Text(
                     'Pago Exitoso',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    style: AppTextStyles.subtitle.copyWith(color: Colors.white, fontSize: 22),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
+                  Text(
                     'Tu pago ha sido procesado correctamente',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white70,
-                    ),
+                    style: AppTextStyles.body.copyWith(color: Colors.white70),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     '\$179.690',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    style: AppTextStyles.title.copyWith(color: Colors.white, fontSize: 36),
                   ),
                 ],
               ),
@@ -97,11 +87,11 @@ class DetallePagoPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withOpacity(0.04),
                     blurRadius: 5,
                     offset: const Offset(0, 2),
                   ),
@@ -133,11 +123,11 @@ class DetallePagoPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withOpacity(0.04),
                     blurRadius: 5,
                     offset: const Offset(0, 2),
                   ),
@@ -157,13 +147,9 @@ class DetallePagoPage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             // Productos comprados
-            const Text(
+            Text(
               'Productos Comprados',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF333333),
-              ),
+              style: AppTextStyles.subtitle,
             ),
             const SizedBox(height: 12),
             _buildProductCard('Cien años de soledad', 'Gabriel García Márquez', 1, 45000),
@@ -181,8 +167,8 @@ class DetallePagoPage extends StatelessWidget {
                     icon: const Icon(Icons.download),
                     label: const Text('Descargar'),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFF6A4C93),
-                      side: const BorderSide(color: Color(0xFF6A4C93)),
+                      foregroundColor: AppColors.primary,
+                      side: BorderSide(color: AppColors.primary),
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -197,8 +183,8 @@ class DetallePagoPage extends StatelessWidget {
                     icon: const Icon(Icons.share),
                     label: const Text('Compartir'),
                     style: OutlinedButton.styleFrom(
-                      foregroundColor: const Color(0xFF6A4C93),
-                      side: const BorderSide(color: Color(0xFF6A4C93)),
+                      foregroundColor: AppColors.primary,
+                      side: BorderSide(color: AppColors.primary),
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -209,27 +195,7 @@ class DetallePagoPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 12),
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6A4C93),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  'Volver al Inicio',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            AppButton(text: 'Volver al Inicio', onPressed: () {},),
           ],
         ),
       ),

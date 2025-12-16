@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class MedioPagoPage extends StatefulWidget {
   const MedioPagoPage({super.key});
@@ -13,9 +14,9 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Método de Pago',
@@ -38,13 +39,9 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Selecciona un método de pago',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
+                    style: AppTextStyles.subtitle,
                   ),
                   const SizedBox(height: 20),
                   // Tarjeta de crédito/débito
@@ -92,36 +89,16 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withOpacity(0.06),
                   blurRadius: 10,
                   offset: const Offset(0, -5),
                 ),
               ],
             ),
-            child: SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6A4C93),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  'Continuar',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            child: AppButton(text: 'Continuar', onPressed: () {}),
           ),
         ],
       ),
@@ -144,15 +121,15 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isSelected ? const Color(0xFF6A4C93) : Colors.transparent,
+            color: isSelected ? AppColors.primary : Colors.transparent,
             width: 2,
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withOpacity(0.04),
               blurRadius: 5,
               offset: const Offset(0, 2),
             ),
@@ -163,12 +140,12 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: const Color(0xFF6A4C93).withOpacity(0.1),
+                color: AppColors.primary.withOpacity(0.08),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icon,
-                color: const Color(0xFF6A4C93),
+                color: AppColors.primary,
                 size: 28,
               ),
             ),
@@ -179,19 +156,12 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
+                    style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     subtitle,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: Color(0xFF666666),
-                    ),
+                    style: AppTextStyles.bodyLight,
                   ),
                 ],
               ),
@@ -204,7 +174,7 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
                   metodoPagoSeleccionado = value!;
                 });
               },
-              activeColor: const Color(0xFF6A4C93),
+              activeColor: AppColors.primary,
             ),
           ],
         ),
@@ -216,11 +186,11 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withOpacity(0.04),
             blurRadius: 5,
             offset: const Offset(0, 2),
           ),
@@ -229,20 +199,16 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Información de la tarjeta',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF333333),
-            ),
+            style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 16),
           TextField(
             decoration: InputDecoration(
               labelText: 'Número de tarjeta',
               hintText: '1234 5678 9012 3456',
-              prefixIcon: const Icon(Icons.credit_card, color: Color(0xFF6A4C93)),
+              prefixIcon: Icon(Icons.credit_card, color: AppColors.primary),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -254,7 +220,7 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
             decoration: InputDecoration(
               labelText: 'Nombre del titular',
               hintText: 'Juan Pérez',
-              prefixIcon: const Icon(Icons.person, color: Color(0xFF6A4C93)),
+              prefixIcon: Icon(Icons.person, color: AppColors.primary),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -268,7 +234,7 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
                   decoration: InputDecoration(
                     labelText: 'Fecha vencimiento',
                     hintText: 'MM/AA',
-                    prefixIcon: const Icon(Icons.calendar_today, color: Color(0xFF6A4C93)),
+                    prefixIcon: Icon(Icons.calendar_today, color: AppColors.primary),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -281,7 +247,7 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
                   decoration: InputDecoration(
                     labelText: 'CVV',
                     hintText: '123',
-                    prefixIcon: const Icon(Icons.lock, color: Color(0xFF6A4C93)),
+                    prefixIcon: Icon(Icons.lock, color: AppColors.primary),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -301,7 +267,7 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -312,21 +278,14 @@ class _MedioPagoPageState extends State<MedioPagoPage> {
             color: Color(0xFF6A4C93),
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Serás redirigido a tu banco',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF333333),
-            ),
+            style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 8),
-          const Text(
+          Text(
             'Al continuar, te llevaremos a la página de tu banco para completar el pago de forma segura.',
-            style: TextStyle(
-              fontSize: 14,
-              color: Color(0xFF666666),
-            ),
+            style: AppTextStyles.bodyLight,
             textAlign: TextAlign.center,
           ),
         ],

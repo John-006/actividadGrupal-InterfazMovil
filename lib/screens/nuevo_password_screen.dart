@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class NuevoPasswordPage extends StatefulWidget {
   const NuevoPasswordPage({super.key});
@@ -14,9 +15,9 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Nueva Contraseña',
@@ -42,7 +43,7 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF6A4C93).withOpacity(0.1),
+                  color: AppColors.primary.withOpacity(0.12),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -54,23 +55,15 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
             ),
             const SizedBox(height: 24),
             // Título y descripción
-            const Text(
+            Text(
               'Crea una nueva contraseña',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF333333),
-              ),
+              style: AppTextStyles.title.copyWith(fontSize: 22),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Tu nueva contraseña debe ser diferente a las contraseñas anteriores y cumplir con los requisitos de seguridad.',
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xFF666666),
-                height: 1.5,
-              ),
+              style: AppTextStyles.bodyLight.copyWith(height: 1.5),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
@@ -88,11 +81,11 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
               obscureText: obscurePassword,
               decoration: InputDecoration(
                 hintText: '••••••••',
-                prefixIcon: const Icon(Icons.lock, color: Color(0xFF6A4C93)),
+                prefixIcon: Icon(Icons.lock, color: AppColors.primary),
                 suffixIcon: IconButton(
                   icon: Icon(
                     obscurePassword ? Icons.visibility_off : Icons.visibility,
-                    color: const Color(0xFF6A4C93),
+                    color: AppColors.primary,
                   ),
                   onPressed: () {
                     setState(() {
@@ -101,18 +94,18 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
                   },
                 ),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: AppColors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+                  borderSide: BorderSide(color: AppColors.grey300),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF6A4C93), width: 2),
+                  borderSide: BorderSide(color: AppColors.primary, width: 2),
                 ),
               ),
             ),
@@ -131,11 +124,11 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
               obscureText: obscureConfirmPassword,
               decoration: InputDecoration(
                 hintText: '••••••••',
-                prefixIcon: const Icon(Icons.lock_outline, color: Color(0xFF6A4C93)),
+                prefixIcon: Icon(Icons.lock_outline, color: AppColors.primary),
                 suffixIcon: IconButton(
                   icon: Icon(
                     obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
-                    color: const Color(0xFF6A4C93),
+                    color: AppColors.primary,
                   ),
                   onPressed: () {
                     setState(() {
@@ -144,18 +137,18 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
                   },
                 ),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: AppColors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+                  borderSide: BorderSide(color: AppColors.grey300),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF6A4C93), width: 2),
+                  borderSide: BorderSide(color: AppColors.primary, width: 2),
                 ),
               ),
             ),
@@ -164,11 +157,11 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withOpacity(0.04),
                     blurRadius: 5,
                     offset: const Offset(0, 2),
                   ),
@@ -200,27 +193,7 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
             ),
             const SizedBox(height: 32),
             // Botón
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6A4C93),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  'Cambiar Contraseña',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            AppButton(text: 'Cambiar Contraseña', onPressed: () {}),
           ],
         ),
       ),
@@ -233,7 +206,7 @@ class _NuevoPasswordPageState extends State<NuevoPasswordPage> {
         Icon(
           isMet ? Icons.check_circle : Icons.cancel,
           size: 18,
-          color: isMet ? const Color(0xFF4CAF50) : Colors.grey.shade400,
+          color: isMet ? const Color(0xFF4CAF50) : AppColors.grey400,
         ),
         const SizedBox(width: 8),
         Text(

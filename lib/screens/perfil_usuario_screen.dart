@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class PerfilUsuarioPage extends StatelessWidget {
   const PerfilUsuarioPage({super.key});
@@ -6,9 +7,9 @@ class PerfilUsuarioPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Mi Perfil',
@@ -36,7 +37,7 @@ class PerfilUsuarioPage extends StatelessWidget {
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 32),
-              color: const Color(0xFF6A4C93),
+              color: AppColors.primary,
               child: Column(
                 children: [
                   Stack(
@@ -99,14 +100,7 @@ class PerfilUsuarioPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Información Personal',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
-                  ),
+                  Text('Información Personal', style: AppTextStyles.subtitle),
                   const SizedBox(height: 16),
                   _buildInfoCard(
                     icon: Icons.phone,
@@ -127,14 +121,7 @@ class PerfilUsuarioPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   // Opciones de cuenta
-                  const Text(
-                    'Configuración de Cuenta',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
-                  ),
+                  Text('Configuración de Cuenta', style: AppTextStyles.subtitle),
                   const SizedBox(height: 16),
                   _buildOptionTile(
                     icon: Icons.history,

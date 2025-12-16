@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_theme.dart';
 
 class CambioEmailPage extends StatelessWidget {
   const CambioEmailPage({super.key});
@@ -6,9 +7,9 @@ class CambioEmailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Cambiar Email',
@@ -34,7 +35,7 @@ class CambioEmailPage extends StatelessWidget {
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF6A4C93).withOpacity(0.1),
+                  color: AppColors.primary.withOpacity(0.12),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
@@ -46,23 +47,15 @@ class CambioEmailPage extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             // Título y descripción
-            const Text(
+            Text(
               'Actualiza tu correo electrónico',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF333333),
-              ),
+              style: AppTextStyles.title.copyWith(fontSize: 22),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Ingresa tu nuevo correo electrónico. Te enviaremos un código de verificación para confirmar el cambio.',
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xFF666666),
-                height: 1.5,
-              ),
+              style: AppTextStyles.bodyLight.copyWith(height: 1.5),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
@@ -70,41 +63,34 @@ class CambioEmailPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withOpacity(0.04),
                     blurRadius: 5,
                     offset: const Offset(0, 2),
                   ),
                 ],
               ),
               child: Row(
-                children: const [
+                children: [
                   Icon(
                     Icons.email,
-                    color: Color(0xFF6A4C93),
+                    color: AppColors.primary,
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Email actual',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFF666666),
-                        ),
+                        style: AppTextStyles.bodyLight,
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         'juan.perez@correo.com',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF333333),
-                        ),
+                        style: AppTextStyles.body.copyWith(fontWeight: FontWeight.w600),
                       ),
                     ],
                   ),
@@ -126,20 +112,20 @@ class CambioEmailPage extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 hintText: 'nuevo@correo.com',
-                prefixIcon: const Icon(Icons.email_outlined, color: Color(0xFF6A4C93)),
+                prefixIcon: Icon(Icons.email_outlined, color: AppColors.primary),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: AppColors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+                  borderSide: BorderSide(color: AppColors.grey300),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF6A4C93), width: 2),
+                  borderSide: BorderSide(color: AppColors.primary, width: 2),
                 ),
               ),
             ),
@@ -158,20 +144,20 @@ class CambioEmailPage extends StatelessWidget {
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 hintText: 'nuevo@correo.com',
-                prefixIcon: const Icon(Icons.email_outlined, color: Color(0xFF6A4C93)),
+                prefixIcon: Icon(Icons.email_outlined, color: AppColors.primary),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: AppColors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+                  borderSide: BorderSide(color: AppColors.grey300),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF6A4C93), width: 2),
+                  borderSide: BorderSide(color: AppColors.primary, width: 2),
                 ),
               ),
             ),
@@ -190,20 +176,20 @@ class CambioEmailPage extends StatelessWidget {
               obscureText: true,
               decoration: InputDecoration(
                 hintText: '••••••••',
-                prefixIcon: const Icon(Icons.lock, color: Color(0xFF6A4C93)),
+                prefixIcon: Icon(Icons.lock, color: AppColors.primary),
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: AppColors.white,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide.none,
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey.shade300),
+                  borderSide: BorderSide(color: AppColors.grey300),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0xFF6A4C93), width: 2),
+                  borderSide: BorderSide(color: AppColors.primary, width: 2),
                 ),
               ),
             ),
@@ -212,27 +198,23 @@ class CambioEmailPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.blue.shade50,
+                color: AppColors.primary.withOpacity(0.06),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.blue.shade200),
+                border: Border.all(color: AppColors.primary.withOpacity(0.12)),
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Icon(
                     Icons.info_outline,
-                    color: Colors.blue.shade700,
+                    color: AppColors.primary,
                     size: 24,
                   ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'Por seguridad, te enviaremos un código de verificación a tu nuevo correo electrónico.',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.blue.shade900,
-                        height: 1.4,
-                      ),
+                      style: AppTextStyles.body.copyWith(color: AppColors.primary, height: 1.4),
                     ),
                   ),
                 ],
@@ -240,27 +222,7 @@ class CambioEmailPage extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             // Botón de continuar
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF6A4C93),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: const Text(
-                  'Cambiar Email',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            AppButton(text: 'Cambiar Email', onPressed: () {}),
           ],
         ),
       ),

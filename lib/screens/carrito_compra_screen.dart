@@ -24,9 +24,9 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF6A4C93),
+        backgroundColor: AppColors.primary,
         elevation: 0,
         title: const Text(
           'Carrito de Compra',
@@ -69,7 +69,7 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
           Icon(
             Icons.shopping_cart_outlined,
             size: 100,
-            color: Colors.grey.shade400,
+            color: AppColors.grey400,
           ),
           const SizedBox(height: 16),
           const Text(
@@ -77,7 +77,7 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
-              color: Color(0xFF666666),
+              color: AppColors.grey600,
             ),
           ),
           const SizedBox(height: 8),
@@ -98,11 +98,11 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withOpacity(0.04),
             blurRadius: 5,
             offset: const Offset(0, 2),
           ),
@@ -115,13 +115,13 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
             width: 60,
             height: 80,
             decoration: BoxDecoration(
-              color: Colors.grey.shade300,
+              color: AppColors.grey300,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
               Icons.book,
               size: 30,
-              color: Colors.grey.shade500,
+              color: AppColors.grey500,
             ),
           ),
           const SizedBox(width: 12),
@@ -154,10 +154,10 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
                   children: [
                     Text(
                       '\$${item['precio']}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF6A4C93),
+                        color: AppColors.primary,
                       ),
                     ),
                     Row(
@@ -171,7 +171,7 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
                             });
                           },
                           icon: const Icon(Icons.remove_circle_outline),
-                          color: const Color(0xFF6A4C93),
+                          color: AppColors.primary,
                           constraints: const BoxConstraints(),
                           padding: EdgeInsets.zero,
                         ),
@@ -192,7 +192,7 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
                             });
                           },
                           icon: const Icon(Icons.add_circle_outline),
-                          color: const Color(0xFF6A4C93),
+                          color: AppColors.primary,
                           constraints: const BoxConstraints(),
                           padding: EdgeInsets.zero,
                         ),
@@ -210,7 +210,7 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
               });
             },
             icon: const Icon(Icons.delete_outline),
-            color: Colors.red.shade400,
+            color: AppColors.red400,
           ),
         ],
       ),
@@ -221,11 +221,15 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.white,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+        color: AppColors.white,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.06),
             blurRadius: 10,
             offset: const Offset(0, -5),
           ),
@@ -239,26 +243,9 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
           const Divider(height: 24),
           _buildSummaryRow('Total', '\$${total.toStringAsFixed(0)}', isTotal: true),
           const SizedBox(height: 16),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF6A4C93),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              child: const Text(
-                'Proceder al pago',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+          AppButton(
+            text: 'Proceder al pago',
+            onPressed: () {},
           ),
         ],
       ),
