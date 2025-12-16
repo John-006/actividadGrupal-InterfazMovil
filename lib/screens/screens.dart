@@ -1,14 +1,17 @@
-export 'cambio_email_page.dart';
-export 'carrito_compra_page.dart';
-export 'categorias_page.dart';
-export 'confirmacion_page.dart';
-export 'detalle_pago_page.dart';
-export 'detalle_producto_page.dart';
-export 'genero_page.dart';
-export 'lista_productos_page.dart';
-export 'login_page.dart';
-export 'medio_pago_page.dart';
-export 'nuevo_password_page.dart';
-export 'orden_compra_page.dart';
-export 'perfil_usuario_page.dart';
-export 'registro_usuario_page.dart';
+// Archivo: screens.dart
+
+export 'app_theme.dart';
+export 'cambio_email_screen.dart';
+export 'carrito_compra_screen.dart';
+export 'categorias_screen.dart';
+export 'confirmacion_screen.dart';
+export 'detalle_pago_screen.dart';
+export 'detalle_producto_screen.dart';
+export 'genero_screen.dart';
+export 'lista_productos_screen.dart';
+export 'login_screen.dart';
+export 'medio_pago_screen.dart';
+export 'nuevo_password_screen.dart';
+export 'orden_compra_screen.dart';
+export 'perfil_usuario_screen.dart';
+export 'registro_screen.dart';

@@ -1,0 +1,291 @@
+import 'package:flutter/material.dart';
+
+class CarritoCompraPage extends StatefulWidget {
+  const CarritoCompraPage({super.key});
+
+  @override
+  State<CarritoCompraPage> createState() => _CarritoCompraPageState();
+}
+
+class _CarritoCompraPageState extends State<CarritoCompraPage> {
+  final List<Map<String, dynamic>> itemsCarrito = [
+    {'titulo': 'Cien años de soledad', 'autor': 'Gabriel García Márquez', 'precio': 45000, 'cantidad': 1},
+    {'titulo': 'Don Quijote de la Mancha', 'autor': 'Miguel de Cervantes', 'precio': 38000, 'cantidad': 2},
+    {'titulo': 'El principito', 'autor': 'Antoine de Saint-Exupéry', 'precio': 25000, 'cantidad': 1},
+  ];
+
+  double get subtotal {
+    return itemsCarrito.fold(0, (sum, item) => sum + (item['precio'] * item['cantidad']));
+  }
+
+  double get envio => 5000;
+  double get total => subtotal + envio;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF6A4C93),
+        elevation: 0,
+        title: const Text(
+          'Carrito de Compra',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: itemsCarrito.isEmpty
+          ? _buildEmptyCart()
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: itemsCarrito.length,
+                    itemBuilder: (context, index) {
+                      final item = itemsCarrito[index];
+                      return _buildCartItem(item, index);
+                    },
+                  ),
+                ),
+                _buildSummary(),
+              ],
+            ),
+    );
+  }
+
+  Widget _buildEmptyCart() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.shopping_cart_outlined,
+            size: 100,
+            color: Colors.grey.shade400,
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'Tu carrito está vacío',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF666666),
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Agrega algunos libros para comenzar',
+            style: TextStyle(
+              fontSize: 14,
+              color: Color(0xFF999999),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCartItem(Map<String, dynamic> item, int index) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 5,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          // Imagen
+          Container(
+            width: 60,
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade300,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Icon(
+              Icons.book,
+              size: 30,
+              color: Colors.grey.shade500,
+            ),
+          ),
+          const SizedBox(width: 12),
+          // Información
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item['titulo'],
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF333333),
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  item['autor'],
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Color(0xFF666666),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '\$${item['precio']}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF6A4C93),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              if (item['cantidad'] > 1) {
+                                item['cantidad']--;
+                              }
+                            });
+                          },
+                          icon: const Icon(Icons.remove_circle_outline),
+                          color: const Color(0xFF6A4C93),
+                          constraints: const BoxConstraints(),
+                          padding: EdgeInsets.zero,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Text(
+                            '${item['cantidad']}',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              item['cantidad']++;
+                            });
+                          },
+                          icon: const Icon(Icons.add_circle_outline),
+                          color: const Color(0xFF6A4C93),
+                          constraints: const BoxConstraints(),
+                          padding: EdgeInsets.zero,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                itemsCarrito.removeAt(index);
+              });
+            },
+            icon: const Icon(Icons.delete_outline),
+            color: Colors.red.shade400,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSummary() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 10,
+            offset: const Offset(0, -5),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          _buildSummaryRow('Subtotal', '\$${subtotal.toStringAsFixed(0)}'),
+          const SizedBox(height: 8),
+          _buildSummaryRow('Envío', '\$${envio.toStringAsFixed(0)}'),
+          const Divider(height: 24),
+          _buildSummaryRow('Total', '\$${total.toStringAsFixed(0)}', isTotal: true),
+          const SizedBox(height: 16),
+          SizedBox(
+            width: double.infinity,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF6A4C93),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Text(
+                'Proceder al pago',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSummaryRow(String label, String value, {bool isTotal = false}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: isTotal ? 18 : 14,
+            fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
+            color: isTotal ? const Color(0xFF333333) : const Color(0xFF666666),
+          ),
+        ),
+        Text(
+          value,
+          style: TextStyle(
+            fontSize: isTotal ? 20 : 16,
+            fontWeight: FontWeight.bold,
+            color: isTotal ? const Color(0xFF6A4C93) : const Color(0xFF333333),
+          ),
+        ),
+      ],
+    );
+  }
+}

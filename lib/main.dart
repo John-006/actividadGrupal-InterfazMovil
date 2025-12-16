@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart'; // Importa DotEnv
 import 'package:app/screens/screens.dart';
 
-void main() {
+// Getter para acceder al cliente de Supabase fácilmente
+final supabase = Supabase.instance.client;
+
+Future<void> main() async {
+  // 1. Carga el archivo .env antes de inicializar Flutter.
+  await dotenv.load(fileName: ".env");
+
+  WidgetsFlutterBinding.ensureInitialized(); 
+
+  // 2. Inicializa Supabase usando las variables cargadas
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!,
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
+  );
+
   runApp(const BibliotecaApp());
 }
 
 class BibliotecaApp extends StatelessWidget {
+// ... (resto del código de BibliotecaApp y HomePage sin cambios)
   const BibliotecaApp({super.key});
 
   @override
@@ -47,7 +64,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Biblioteca - Menú Principal'),
-        backgroundColor: Colors.blue,
+        backgroundColor: const Color.fromARGB(255, 144, 65, 255),
         foregroundColor: Colors.white,
       ),
       body: ListView.builder(
@@ -66,7 +83,7 @@ class HomePage extends StatelessWidget {
             },
           );
         },
-),
-);
-}
+      ),
+    );
+  }
 }
