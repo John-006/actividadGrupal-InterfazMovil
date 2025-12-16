@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart'; // Importa DotEnv
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:app/screens/screens.dart';
-
+// EDITADO FELIPE
 // Getter para acceder al cliente de Supabase fácilmente
 final supabase = Supabase.instance.client;
 
 Future<void> main() async {
-  // 1. Carga el archivo .env antes de inicializar Flutter.
+  // Asegura que los bindings de Flutter estén inicializados
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // 1. Carga el archivo .env
   await dotenv.load(fileName: ".env");
-
-  WidgetsFlutterBinding.ensureInitialized(); 
 
   // 2. Inicializa Supabase usando las variables cargadas
   await Supabase.initialize(
@@ -22,7 +23,6 @@ Future<void> main() async {
 }
 
 class BibliotecaApp extends StatelessWidget {
-// ... (resto del código de BibliotecaApp y HomePage sin cambios)
   const BibliotecaApp({super.key});
 
   @override
@@ -86,4 +86,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
+} 
