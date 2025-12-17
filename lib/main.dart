@@ -58,7 +58,12 @@ class HomePage extends StatelessWidget {
       {'nombre': 'Nuevo Password', 'page': const NuevoPasswordPage()},
       {'nombre': 'Carrito de Compra', 'page': const CarritoCompraPage()},
       {'nombre': 'Detalle de Pago', 'page': const DetallePagoPage()},
-      {'nombre': 'Detalle de Producto', 'page': const DetalleProductoPage()},
+      {'nombre': 'Detalle de Producto', 'page': const DetalleProductoPage(libro: {
+        'id': 1,
+        'titulo': 'Libro de prueba',
+        'precio': 20000,
+        'autor': 'Autor prueba'
+      })},
     ];
 
     return Scaffold(
