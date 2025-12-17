@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'app_theme.dart';
 
 class GeneroPage extends StatelessWidget {
   const GeneroPage({super.key});
@@ -7,9 +6,9 @@ class GeneroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
-        backgroundColor: AppColors.primary,
+        backgroundColor: const Color(0xFF6A4C93),
         elevation: 0,
         title: const Text(
           'Género: Ficción',
@@ -35,7 +34,7 @@ class GeneroPage extends StatelessWidget {
           // Tabs de subgéneros
           Container(
             height: 50,
-            color: AppColors.white,
+            color: Colors.white,
             child: ListView(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -87,24 +86,24 @@ class GeneroPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.06),
-                              blurRadius: 8,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Imagen del libro
+                        Expanded(
+                          flex: 3,
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade300,
                                   borderRadius: const BorderRadius.vertical(
                                     top: Radius.circular(12),
                                   ),
                                 ),
                                 child: Icon(
-                            ),
+                                  Icons.book,
                                   size: 60,
                                   color: Colors.grey.shade500,
                                 ),

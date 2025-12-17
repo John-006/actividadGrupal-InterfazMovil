@@ -1,8 +1,34 @@
 import 'package:flutter/material.dart';
-import 'app_theme.dart';
+import 'app_theme.dart'; // Importación simple de AppColors y AppTextStyles (asumiendo que está en /screens)
 
 class ConfirmacionPage extends StatelessWidget {
   const ConfirmacionPage({super.key});
+
+  // Helper para construir las filas de información, eliminando la necesidad de constantes complejas
+  Widget _buildSummaryRow(String label, String value, {Color? color, bool isTotal = false}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+            color: Color(0xFF666666),
+          ),
+        ),
+        Text(
+          value,
+          style: isTotal 
+              ? AppTextStyles.subtitle.copyWith(color: AppColors.primary, fontSize: 18)
+              : TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: color ?? const Color(0xFF333333),
+                ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +67,8 @@ class ConfirmacionPage extends StatelessWidget {
                     const SizedBox(height: 32),
                     Text(
                       '¡Pedido Confirmado!',
-                      style: AppTextStyles.title.copyWith(fontSize: 28),
+                      // Usa AppTextStyles, que debe estar definida en app_theme.dart
+                      style: AppTextStyles.title.copyWith(fontSize: 28), 
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
@@ -51,7 +78,7 @@ class ConfirmacionPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 40),
-                    // Información del pedido
+                    // Información del pedido (Resumen)
                     Container(
                       padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
@@ -67,81 +94,18 @@ class ConfirmacionPage extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                'Número de orden',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF666666),
-                                ),
-                              ),
-                              Text(
-                                '#ORD-2024-001234',
-                                style: AppTextStyles.body.copyWith(fontWeight: FontWeight.bold, color: AppColors.primary),
-                              ),
-                            ],
+                          // 2. CORRECCIÓN: Uso del _buildSummaryRow helper
+                          _buildSummaryRow(
+                            'Número de orden',
+                            '#ORD-2024-001234',
+                            color: AppColors.primary,
                           ),
                           const Divider(height: 24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                'Fecha de pedido',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF666666),
-                                ),
-                              ),
-                              Text(
-                                '28 Nov, 2024',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF333333),
-                                ),
-                              ),
-                            ],
-                          ),
+                          _buildSummaryRow('Fecha de pedido', '28 Nov, 2024'),
                           const Divider(height: 24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                'Total',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF666666),
-                                ),
-                              ),
-                              Text(
-                                '\$179.690',
-                                style: AppTextStyles.subtitle.copyWith(color: AppColors.primary, fontSize: 18),
-                              ),
-                            ],
-                          ),
+                          _buildSummaryRow('Total', '\$179.690', isTotal: true),
                           const Divider(height: 24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text(
-                                'Tiempo estimado',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Color(0xFF666666),
-                                ),
-                              ),
-                              Text(
-                                '3-5 días hábiles',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF333333),
-                                ),
-                              ),
-                            ],
-                          ),
+                          _buildSummaryRow('Tiempo estimado', '3-5 días hábiles'),
                         ],
                       ),
                     ),
@@ -178,7 +142,13 @@ class ConfirmacionPage extends StatelessWidget {
                 children: [
                   AppButton(text: 'Seguir Pedido', onPressed: () {}),
                   const SizedBox(height: 12),
-                  AppButton(text: 'Volver al Inicio', onPressed: () { Navigator.of(context).popUntil((route) => route.isFirst); }, isOutline: true),
+                  AppButton(
+                    text: 'Volver al Inicio', 
+                    onPressed: () { 
+                      Navigator.of(context).popUntil((route) => route.isFirst); 
+                    }, 
+                    isOutline: true,
+                  ),
                 ],
               ),
             ],

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// 1. CORRECCIÓN: Importación de las clases de utilidad
+import 'app_theme.dart'; 
 
 class CarritoCompraPage extends StatefulWidget {
   const CarritoCompraPage({super.key});
@@ -8,58 +10,24 @@ class CarritoCompraPage extends StatefulWidget {
 }
 
 class _CarritoCompraPageState extends State<CarritoCompraPage> {
+  // Lista de ejemplo: precios como double para evitar errores de tipo en el cálculo
   final List<Map<String, dynamic>> itemsCarrito = [
-    {'titulo': 'Cien años de soledad', 'autor': 'Gabriel García Márquez', 'precio': 45000, 'cantidad': 1},
-    {'titulo': 'Don Quijote de la Mancha', 'autor': 'Miguel de Cervantes', 'precio': 38000, 'cantidad': 2},
-    {'titulo': 'El principito', 'autor': 'Antoine de Saint-Exupéry', 'precio': 25000, 'cantidad': 1},
+    {'titulo': 'Cien años de soledad', 'autor': 'Gabriel García Márquez', 'precio': 45000.0, 'cantidad': 1},
+    {'titulo': 'Don Quijote de la Mancha', 'autor': 'Miguel de Cervantes', 'precio': 38000.0, 'cantidad': 2},
+    {'titulo': 'El principito', 'autor': 'Antoine de Saint-Exupéry', 'precio': 25000.0, 'cantidad': 1},
   ];
 
   double get subtotal {
-    return itemsCarrito.fold(0, (sum, item) => sum + (item['precio'] * item['cantidad']));
+    // 4. CORRECCIÓN: Usar 0.0 como valor inicial para asegurar que el resultado sea double.
+    return itemsCarrito.fold(0.0, (sum, item) => sum + (item['precio'] * item['cantidad']));
   }
 
-  double get envio => 5000;
+  double get envio => 5000.0;
   double get total => subtotal + envio;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: AppColors.primary,
-        elevation: 0,
-        title: const Text(
-          'Carrito de Compra',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
-      body: itemsCarrito.isEmpty
-          ? _buildEmptyCart()
-          : Column(
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: itemsCarrito.length,
-                    itemBuilder: (context, index) {
-                      final item = itemsCarrito[index];
-                      return _buildCartItem(item, index);
-                    },
-                  ),
-                ),
-                _buildSummary(),
-              ],
-            ),
-    );
-  }
+  // ----------------------------------------------------------------------
+  // BUILDER METHODS
+  // ----------------------------------------------------------------------
 
   Widget _buildEmptyCart() {
     return Center(
@@ -72,7 +40,7 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
             color: AppColors.grey400,
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Tu carrito está vacío',
             style: TextStyle(
               fontSize: 18,
@@ -152,8 +120,9 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    // 3. CORRECCIÓN: Muestra el precio total del ítem (precio * cantidad)
                     Text(
-                      '\$${item['precio']}',
+                      '\$${(item['precio'] * item['cantidad']).toStringAsFixed(0)}',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -167,6 +136,9 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
                             setState(() {
                               if (item['cantidad'] > 1) {
                                 item['cantidad']--;
+                              } else {
+                                // Opción adicional: eliminar si llega a 0
+                                itemsCarrito.removeAt(index);
                               }
                             });
                           },
@@ -224,10 +196,7 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
         color: AppColors.white,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         boxShadow: [
-          BoxShadow(
-        color: AppColors.white,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-        boxShadow: [
+          // 2. CORRECCIÓN: Eliminación del bloque de BoxShadow duplicado
           BoxShadow(
             color: Colors.black.withOpacity(0.06),
             blurRadius: 10,
@@ -245,7 +214,9 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
           const SizedBox(height: 16),
           AppButton(
             text: 'Proceder al pago',
-            onPressed: () {},
+            onPressed: () {
+              // Lógica de pago
+            },
           ),
         ],
       ),
@@ -269,10 +240,55 @@ class _CarritoCompraPageState extends State<CarritoCompraPage> {
           style: TextStyle(
             fontSize: isTotal ? 20 : 16,
             fontWeight: FontWeight.bold,
-            color: isTotal ? const Color(0xFF6A4C93) : const Color(0xFF333333),
+            // Usar AppColors.primary para el total (definido en app_theme)
+            color: isTotal ? AppColors.primary : const Color(0xFF333333), 
           ),
         ),
       ],
+    );
+  }
+  
+  // ----------------------------------------------------------------------
+  // WIDGET PRINCIPAL
+  // ----------------------------------------------------------------------
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.primary,
+        elevation: 0,
+        title: const Text(
+          'Carrito de Compra',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: itemsCarrito.isEmpty
+          ? _buildEmptyCart()
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(16),
+                    itemCount: itemsCarrito.length,
+                    itemBuilder: (context, index) {
+                      final item = itemsCarrito[index];
+                      return _buildCartItem(item, index);
+                    },
+                  ),
+                ),
+                _buildSummary(),
+              ],
+            ),
     );
   }
 }
