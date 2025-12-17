@@ -22,6 +22,7 @@ class AuthService {
           'nombre': nombre,
           'telefono': telefono,
           'genero_prefer': genero,
+          'mail': email,
           'created_at': DateTime.now().toIso8601String(),
         });
         return null;
